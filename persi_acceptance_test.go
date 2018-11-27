@@ -168,7 +168,7 @@ var _ = Describe("Cloud Foundry Persistence", func() {
 
 					// wait for async service to finish
 					Eventually(func() *Session {
-						serviceDetails := cf.Cf("services").Wait(DEFAULT_TIMEOUT)
+						serviceDetails := cf.Cf("-v", "services").Wait(DEFAULT_TIMEOUT)
 						Expect(serviceDetails).To(Exit(0))
 						return serviceDetails
 					}, LONG_TIMEOUT, POLL_INTERVAL).Should(Not(Say(instanceName)))
